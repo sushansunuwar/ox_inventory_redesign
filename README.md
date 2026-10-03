@@ -1,4 +1,4 @@
-# ox_inventory UI Edit by jhallux
+# ox_inventory UI edit by Jhallux
 
 A clean, modern, and lightweight UI edit for **ox_inventory** featuring a sleek blue theme.
 
