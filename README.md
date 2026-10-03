@@ -1,0 +1,2 @@
+# ox_inventory[edit]
+# ox_inventory UI Edit  Simple and clean UI edit for **ox_inventory**.  ## Preview  [Imgur Preview](https://imgur.com/a/bwFLSzA)  ## Features  * Clean UI * Blue theme * Modern design * Lightweight * Easy to install  ## Installation  Replace the original `web` folder with the edited files, then restart `ox_inventory`.  ```cfg ensure ox_inventory ```  ## Credits  Original resource: [ox_inventory](https://github.com/overextended/ox_inventory)

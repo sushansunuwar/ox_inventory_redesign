@@ -1,0 +1,48 @@
+import React, { useMemo } from 'react';
+
+const colorChannelMixer = (colorChannelA: number, colorChannelB: number, amountToMix: number) => {
+  let channelA = colorChannelA * amountToMix;
+  let channelB = colorChannelB * (1 - amountToMix);
+  return channelA + channelB;
+};
+
+const colorMixer = (rgbA: number[], rgbB: number[], amountToMix: number) => {
+  let r = colorChannelMixer(rgbA[0], rgbB[0], amountToMix);
+  let g = colorChannelMixer(rgbA[1], rgbB[1], amountToMix);
+  let b = colorChannelMixer(rgbA[2], rgbB[2], amountToMix);
+  return `rgb(${r}, ${g}, ${b})`;
+};
+
+const COLORS = {
+  // Blue Theme Colors - Reference Match
+  primaryColor: [33, 150, 255], // Primary Blue
+  secondColor: [0, 255, 255], // Pure Cyan
+  accentColor: [5, 11, 20], // Dark Navy
+};
+
+const WeightBar: React.FC<{ percent: number; durability?: boolean }> = ({ percent, durability }) => {
+  const color = useMemo(
+    () =>
+      durability
+        ? percent < 50
+          ? colorMixer(COLORS.accentColor, COLORS.primaryColor, percent / 100)
+          : colorMixer(COLORS.secondColor, COLORS.accentColor, percent / 100)
+        : colorMixer(COLORS.primaryColor, COLORS.secondColor, percent / 100),
+    [durability, percent]
+  );
+
+  return (
+    <div className={durability ? 'durability-bar' : 'weight-bar'}>
+      <div
+        style={{
+          visibility: percent > 0 ? 'visible' : 'hidden',
+          height: '100%',
+          width: `${percent}%`,
+          backgroundColor: color,
+          transition: `background ${0.3}s ease, width ${0.3}s ease`,
+        }}
+      ></div>
+    </div>
+  );
+};
+export default WeightBar;
